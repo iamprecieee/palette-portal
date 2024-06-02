@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block content %}
+    <div class="cart-list" id="main">
+        <h1 id="genre">Cart</h1>
+        <div class="table-table">
+            <table class="table-cart">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Remove</th>
+                        <th>Unit Price</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    <tr>
+                        <td>
+                            <a href="{{ item.artwork.get_absolute_url }}">
+                                <img id="artwork-image" src="{{ item.artwork.image.url }}">
+                            </a>
+                        </td>
+                        <td class="major" id="price-name">{{ item.artwork.name }}</td>
+                        <td>
+                            <form action="{% url 'cart:cart-add' item.artwork.id %}" method="post" class="quantity-form form-select">
+                                {{ item.update_form.quantity }}
+                                {{ item.update_form.override }}
+                                <input type="submit" value="Update" class="add-button">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'cart:cart-remove' item.artwork.id %}" method="post">
+                                <input type="submit" value="Remove" class="remove-button">
+                                {% csrf_token %}
+                            </form>
+                        </td>
+                        <td class="num major" id="price">${{ item.price }}</td>
+                        <td class="num major">${{ item.total_price }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="total">
+                        <td>Total</td>
+                        <td colspan="4"></td>
+                        <td class="num">${{ cart.get_total_price }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="text-right">
+            <a href="{% url 'palette:artwork-list' %}" class="button-light">
+                Continue Shopping
+            </a>
+        </p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.quantity-form select').each(function(index) {
+                $(this).attr('id', 'select-' + index).select2({
+                    minimumResultsForSearch: Infinity, // Disable search box
+                    width: 'auto'
+                });
+            });
+        });
+
+        const imgs = document.querySelectorAll('#artwork-image');
+        const names = document.querySelectorAll('#price-name');
+        const prices = document.querySelectorAll('#price');
+        const colorThief = new ColorThief();
+
+        // Helper function to calculate saturation
+        function getSaturation(rgb) {
+            const max = Math.max(rgb[0], rgb[1], rgb[2]);
+            const min = Math.min(rgb[0], rgb[1], rgb[2]);
+            return (max - min) / max;
+        }
+        
+        // Helper function to calculate warmth (redness)
+        function getWarmth(rgb) {
+            return rgb[0] - Math.max(rgb[1], rgb[2]);
+        }
+
+        imgs.forEach((img, index) => {
+            // Ensure image is loaded before extracting color
+            img.addEventListener('load', function() {
+                const palette = colorThief.getPalette(img, 10);
+                let bestColor = palette[0];
+                let maxScore = getSaturation(palette[0]) + getWarmth(palette[0]);
+
+                for (let i = 1; i < palette.length; i++) {
+                    const score = getSaturation(palette[i]) + getWarmth(palette[i]);
+                    if (score > maxScore) {
+                        maxScore = score;
+                        bestColor = palette[i];
+                    }
+                }
+
+                names[index].style.color = `rgb(${bestColor[0]}, ${bestColor[1]}, ${bestColor[2]})`;
+                prices[index].style.color = `rgb(${bestColor[0]}, ${bestColor[1]}, ${bestColor[2]})`;
+            });
+
+            if (img.complete) {
+                const palette = colorThief.getPalette(img, 10);
+                let bestColor = palette[0];
+                let maxScore = getSaturation(palette[0]) + getWarmth(palette[0]);
+    
+                for (let i = 1; i < palette.length; i++) {
+                    const score = getSaturation(palette[i]) + getWarmth(palette[i]);
+                    if (score > maxScore) {
+                        maxScore = score;
+                        bestColor = palette[i];
+                    }
+                }
+    
+                names[index].style.color = `rgb(${bestColor[0]}, ${bestColor[1]}, ${bestColor[2]})`;
+                prices[index].style.color = `rgb(${bestColor[0]}, ${bestColor[1]}, ${bestColor[2]})`;
+            }});
+    </script>
+{% endblock %}

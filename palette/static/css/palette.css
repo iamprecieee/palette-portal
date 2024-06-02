@@ -29,7 +29,6 @@ body {
 
 #header-hover {
     color: rgb(169, 56, 56);
-    /* color: brown; */
     display: inline-block;
 }
 
@@ -67,6 +66,14 @@ a:hover {
     padding: 15px 0px;
     text-align: center;
     text-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+.ignore-subheader {
+    background-color: inherit;
+    margin-top: 5px;
+    overflow: auto;
+    padding: 15px 0px;
     width: 100%;
 }
 
@@ -159,8 +166,6 @@ a:hover {
 
 #genre {
     text-align: center;
-    align-items: center;
-    align-self: center;
     width: 100%;
 }
 
@@ -240,6 +245,136 @@ img:hover {
     max-width: 80%;
     padding: 10px;
 }
+
+.table-table {
+    border: solid #297cb3;
+    border-radius: 5px;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.major {
+    font-weight: bold;
+}
+
+/* /* table.table-cart {
+    margin-bottom: 40px;
+} */
+
+table.table-cart img {
+    width: 180px;
+}
+
+thead th, tbody tr.total, tbody tr:nth-child(odd).total{
+    background: #297cb3;
+    color: rgb(252, 217, 157);
+    font-weight: bold;
+}
+
+table th, table td {
+    text-align: center;
+    font-size: medium;
+    padding:10px 10px;
+    margin: 0;
+}
+
+tbody tr:nth-child(odd) {
+    background: rgba(217, 217, 206, 0.573);
+}
+
+tbody tr.subtotal {
+    background: #ccc;
+}
+
+tbody td.num {
+    text-align: center;
+} 
+
+.add-button, .remove-button, .button-light {
+    background: rgba(236, 236, 222, 0);
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.4);
+    color: rgb(169, 56, 56);
+    font-weight: bolder;
+    display: inline-block;
+    text-transform: uppercase;
+    transition:color 2s ease, background-color 2s ease, border 3s ease, box-shadow 1s ease, transform 1s ease;
+}
+
+.add-button:hover, .remove-button:hover, .button-light:hover {
+    background: #297cb3;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    color: rgb(252, 217, 157);
+    transform: scale(1.1);
+}
+
+.button-light {
+    padding: 5px;
+}
+
+.text-right {
+    text-align: center;
+}
+
+form p label {
+    font-size: medium;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: rgb(252, 217, 157) !important;
+    border: 0 !important;
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.4);
+    font-size: small;
+    font-weight: bold;
+    transition: border 3s ease, box-shadow 1s ease, transform 1s ease;
+    transform: scale(0.7);
+}
+
+.select2-container--default .select2-selection--single:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    transform: scale(1);
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #297cb3 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    color: rgb(252, 217, 157) !important;
+}
+
+
+.select2-container--default .select2-results {
+    background-color: rgb(236, 236, 222);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.7);
+    color: #297cb3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

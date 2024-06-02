@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Genre, Artwork
+from cart.forms import CartUpdateForm
 
 
 def artwork_list(request, genre_slug=None):
@@ -16,7 +17,7 @@ def artwork_list(request, genre_slug=None):
         genre = Genre.objects.filter(slug=genre_slug).first()
         artworks = Artwork.available.filter(genre=genre)
         
-    return render(request, 'palette/artwork_list.html', {
+    return render(request, 'palette/list.html', {
         'genre': genre,
         'genres':genres,
         'artworks':artworks
@@ -25,5 +26,7 @@ def artwork_list(request, genre_slug=None):
 
 def artwork_detail(request, id, slug):
     artwork = Artwork.available.filter(id=id, slug=slug).first()
+    form = CartUpdateForm()
     
-    return render(request, 'palette/artwork_detail.html', {'artwork':artwork})
+    return render(request, 'palette/detail.html', {'artwork':artwork,
+                                                   'form': form})
