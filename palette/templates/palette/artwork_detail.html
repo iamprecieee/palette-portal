@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ artwork.name }}
+{% endblock %}
+
+{% block content %}
+   <div class="artwork-detail">
+    <div>
+        <img id="artwork-image" src="{{ artwork.image.url }}" alt="{{ artwork.name }} image">
+    </div>
+
+    <div>
+        <h1>
+            {{ artwork.name }}
+        </h1>
+        <h2><a href="{{ artwork.genre.get_absolute_url }}">{{ artwork.genre.name }}</a></h2>
+        <p id="price" class="price">${{ artwork.price }}</p>
+        {{ artwork.get_edition_display }} edition
+        <br>
+        <span style="text-transform: lowercase;">{{ artwork.height }}x{{ artwork.width }}</span>
+        {{ artwork.description | linebreaks}}
+        <br>
+        <a href="{{ artwork.instagram_link }}">{{ artwork.artist }}</a>
+        <br>
+        <br>
+
+    </div>
+   </div>
+{% endblock %} 

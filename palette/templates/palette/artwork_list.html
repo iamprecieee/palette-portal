@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Artworks
+{% endblock %}
+
+{% block content %}
+    <div class="sidebar">
+        <h3 class="genre">Genres</h3>
+
+        <div class="scrollable-box">
+            <ul>
+                <li {% if not genre %}class="selected"{% endif %}>
+                    <a href="{% url 'palette:artwork-list' %}">All</a>
+                </li>
+                {% for g in genres %}
+                    <li {% if genre and genre.slug == g.slug %}class="selected"{% endif %}>
+                    <a href="{{ g.get_absolute_url }}">{{ g.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>  
+
+    <div class="artwork-list" id="main">
+        <h2 id="genre">
+            {% if not genre %}Artworks{% else %}{{ genre.name }}{% endif %}
+        </h2>
+
+        <div class="grid">
+            {% for artwork in artworks %}
+                <div class="item">
+                    <a href="{{ artwork.get_absolute_url }}">
+                        <img src="{{ artwork.image.url }}" alt="{{ artwork.name }} image">
+                    </a>
+                    <a class="name" href="{{ artwork.get_absolute_url }}">
+                        {{ artwork.name }}
+                    </a>
+                    <br>
+                    ${{ artwork.price }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %} 
