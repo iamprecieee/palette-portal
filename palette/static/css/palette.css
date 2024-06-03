@@ -381,6 +381,15 @@ form p label {
     float: left;
 }
 
+
+
+
+
+
+
+
+
+
 #main.checkout form p input {
     background: rgb(236, 236, 222);
     border: 0;
@@ -393,24 +402,6 @@ form p label {
     transition: color 2s ease, transform 1s ease;
     width: 300px;
 }
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-
-
-
 
 #main.checkout form p input[type="submit"] {
     background: rgba(236, 236, 222, 0);
@@ -524,6 +515,31 @@ form p label {
     font-weight: bold;
     padding-bottom: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
 
 .center-wrapper {
     align-items: center;
