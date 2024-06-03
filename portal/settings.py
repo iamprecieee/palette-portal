@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'palette.apps.PaletteConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +105,7 @@ import dj_database_url
 DATABASES = {
     "default": dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default=os.getenv("DEFAULT"),
+        default=os.getenv('DEFAULT'),
         conn_max_age=600,
     )
 }
@@ -161,13 +163,16 @@ CART_SESSION_ID = 'cart'
 
 # Storage conf.
 STORAGES = {
-    'default': {
-        'BACKEND': 'django.core.files.storage.FileSystemStorage',
-        'OPTIONS': {
-            'location': MEDIA_ROOT,
-        },
-    },
     'staticfiles': {
         'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     },
 }
+
+# Cloudinary settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'your_cloud_name',
+    'API_KEY': 'your_api_key',
+    'API_SECRET': 'your_api_secret',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

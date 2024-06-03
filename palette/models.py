@@ -4,6 +4,7 @@ from django.db.models import (Model, CharField, SlugField, DateTimeField,
                               ForeignKey, CASCADE)
 from django.db.models.manager import Manager
 from django.urls import reverse
+from cloudinary.models import CloudinaryField
 
 
 # Custom manager for retrieving only available artworks.
@@ -40,7 +41,7 @@ class Artwork(Model):
         
     name = CharField(max_length=250, unique=True)
     slug = SlugField(max_length=250)
-    image = ImageField(upload_to='uploads/%Y/%m/%d/')
+    image = CloudinaryField('image')
     description = TextField(max_length=255, blank=True)
     height = PositiveIntegerField(blank=True, null=True)
     width = PositiveIntegerField(blank=True, null=True)
