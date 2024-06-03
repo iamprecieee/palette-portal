@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     
     # New apps registered here
     'palette.apps.PaletteConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'cloudinary_storage',
     'cloudinary',
 ]
 
@@ -162,8 +162,7 @@ CART_SESSION_ID = 'cart'
 
 
 # Storage conf.
-# WHITENOISE_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Cloudinary settings
@@ -172,7 +171,6 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('API_KEY'),
     'API_SECRET': os.getenv('API_SECRET'),
     'secure': True,
-    'STATICFILES_MANIFEST_ROOT': STATIC_ROOT
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
