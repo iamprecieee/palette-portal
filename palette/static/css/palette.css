@@ -612,6 +612,13 @@ form p label {
     height: auto; 
 }
 
+/* Media query for ipads */
+@media (max-width: 1024px) {
+    .artwork-detail #artwork-image {
+        width: 100%;
+    }
+}
+
 /* Media query for smaller screens (tablets and mobile devices) */
 @media (max-width: 768px) {
     .artwork-detail #artwork-image {
