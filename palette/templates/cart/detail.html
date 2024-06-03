@@ -28,7 +28,7 @@
                                 <img id="artwork-image" src="{{ item.artwork.image.url }}">
                             </a>
                         </td>
-                        <td class="major" id="price-name">{{ item.artwork.name }}</td>
+                        <td class="major minor" id="price-name">{{ item.artwork.name }}</td>
                         <td>
                             <form action="{% url 'cart:cart-add' item.artwork.id %}" method="post" class="quantity-form form-select">
                                 {{ item.update_form.quantity }}
@@ -43,7 +43,7 @@
                                 {% csrf_token %}
                             </form>
                         </td>
-                        <td class="num major" id="price">${{ item.price }}</td>
+                        <td class="num major minor" id="price">${{ item.price }}</td>
                         <td class="num major">${{ item.total_price }}</td>
                     </tr>
                     {% endfor %}
@@ -55,6 +55,9 @@
                 </tbody>
             </table>
         </div>
+        <p class="text-right">
+            <a href="{% url 'orders:create-order' %}" class="button-light">Checkout</a>
+        </p>
         <p class="text-right">
             <a href="{% url 'palette:artwork-list' %}" class="button-light">
                 Continue Shopping

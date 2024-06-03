@@ -6,31 +6,32 @@
 {% endblock %}
 
 {% block content %}
-   <div class="artwork-detail">
-    <div>
-        <img id="artwork-image" src="{{ artwork.image.url }}" alt="{{ artwork.name }} image">
-    </div>
+    <!-- <div id="creation"> -->
+        <div class="artwork-detail">
+            <div>
+                <img id="artwork-image" src="{{ artwork.image.url }}" alt="{{ artwork.name }} image">
+            </div>
 
-    <div>
-        <h1 id="price-name">
-            {{ artwork.name }}
-        </h1>
-        <h2><a href="{{ artwork.genre.get_absolute_url }}">{{ artwork.genre.name }}</a></h2>
-        <p id="price" class="price">${{ artwork.price }}</p>
-        {{ artwork.get_edition_display }} edition
-        <br>
-        {{ artwork.description | linebreaks}}
-        <a href="{{ artwork.instagram_link }}">{{ artwork.artist }}</a>
-        <br>
-        <br>
-        <span style="text-transform: lowercase; font-size: small;">{{ artwork.height }} x {{ artwork.width }} px</span>
-        <br>
-        <form action="{% url 'cart:cart-add' artwork.id %}" method="post" class="form-select">
-            {{ form.as_p }}
-            <input type="submit" value="Add to cart" class="add-button">
-            {% csrf_token %}
-        </form>
-
-    </div>
-   </div>
+            <div>
+                <h1 id="price-name">
+                    {{ artwork.name }}
+                </h1>
+                <h2><a href="{{ artwork.genre.get_absolute_url }}">{{ artwork.genre.name }}</a></h2>
+                <p id="price" class="price">${{ artwork.price }}</p>
+                {{ artwork.get_edition_display }} edition
+                <br>
+                {{ artwork.description | linebreaks}}
+                <a href="{{ artwork.instagram_link }}">{{ artwork.artist }}</a>
+                <br>
+                <br>
+                <span style="text-transform: lowercase; font-size: small;">{{ artwork.height }} x {{ artwork.width }} px</span>
+                <br>
+                <form action="{% url 'cart:cart-add' artwork.id %}" method="post" class="form-select">
+                    {{ form.as_p }}
+                    <input type="submit" value="Add to cart" class="add-button">
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    <!-- </div> -->
 {% endblock %} 

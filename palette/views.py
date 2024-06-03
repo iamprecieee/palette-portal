@@ -26,6 +26,11 @@ def artwork_list(request, genre_slug=None):
 
 def artwork_detail(request, id, slug):
     artwork = Artwork.available.filter(id=id, slug=slug).first()
+    if not artwork:
+        return render(request, 'error/404.html',
+                   {'error_message': 'An error occured during artwork retrieval',
+                    'remove_subheader': True})
+        
     form = CartUpdateForm()
     
     return render(request, 'palette/detail.html', {'artwork':artwork,

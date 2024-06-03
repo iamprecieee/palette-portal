@@ -31,6 +31,11 @@ def add_item(request, artwork_id):
 def remove_item(request, artwork_id):
     cart = Cart(request)
     artwork = Artwork.available.filter(id=artwork_id).first()
+    if not artwork:
+        return render(request, 'error/404.html',
+                   {'error_message': 'An error occured during artwork retrieval',
+                    'remove_subheader': True})
+        
     cart.remove(artwork)
         
     return redirect('cart:cart-detail')

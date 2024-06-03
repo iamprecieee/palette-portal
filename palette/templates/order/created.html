@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    All Done
+{% endblock %}
+
+{% block content %}
+        <div class="center-wrapper">
+            <div class="order-success-page">
+                <h1>All Done😁</h1>
+                <p>Your order has been completed successfully. Your order number is 
+                    <strong>{{ order.id }}</strong>
+                </p>
+                <br>
+                    <div class="error-return">
+                        <a href="/">Back to home</a>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

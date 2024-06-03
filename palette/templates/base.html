@@ -23,25 +23,31 @@
         <a href="/" id="header-hover">Palette Portal</a>
     </div>
 
-    {% if not show_subheader %}
-        <div class="ignore-subheader">
+    {% if not remove_subheader %}
+        {% if not show_subheader %}
+            <div class="ignore-subheader">
+            </div>
+        {% else %}
+            <div class="subheader">
+                <div class="cart">
+                    {% with total_items=cart|length %}
+                        {% if total_items > 0 %}
+                            {{ total_items }} item{{ total_items|pluralize }} found in <a href="{% url 'cart:cart-detail' %}">cart🛒</a>
+                        {% else %}
+                            <a href="{% url 'cart:cart-detail' %}">Cart🛒</a> is empty
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="content">
+            {% block content %}{% endblock %}
         </div>
     {% else %}
-        <div class="subheader">
-            <div class="cart">
-                {% with total_items=cart|length %}
-                    {% if total_items > 0 %}
-                        {{ total_items }} item{{ total_items|pluralize }} found in <a href="{% url 'cart:cart-detail' %}">cart🛒</a>
-                    {% else %}
-                        <a href="{% url 'cart:cart-detail' %}">Cart🛒</a> is empty
-                    {% endif %}
-                {% endwith %}
-            </div>
+        <div class="error">
+            {% block error %}{% endblock %}
         </div>
     {% endif %}
-
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
 </body>
 </html>

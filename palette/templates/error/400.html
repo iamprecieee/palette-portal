@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Error 400
+{% endblock %}
+
+{% block error %}
+    <div class="center-wrapper">
+        <div id="error-page">
+            <h1>Something's not right!🤔</h1>
+            <p>{{ error_message|linebreaks }}<p>
+            <br>
+            <div class="error-return">
+                <a href="{% url return_url %}">Try again</a>
+            </div>
+            <br>
+        </div>  
+    </div>
+{% endblock %}
