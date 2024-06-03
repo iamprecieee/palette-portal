@@ -439,7 +439,7 @@ form p label {
     display: inline-block;
     font-size: small;
     font-weight: bolder;
-    margin-left: 112px;
+    margin-left: 110px;
     padding: 5px;
     text-transform: uppercase;
     transition:color 2s ease, background-color 2s ease, border 3s ease, box-shadow 1s ease, transform 1s ease;
@@ -515,31 +515,6 @@ form p label {
     font-weight: bold;
     padding-bottom: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
 
 .center-wrapper {
     align-items: center;
@@ -622,15 +597,6 @@ form p label {
     font-size: medium;
     font-weight: normal;
 }
-
-
-
- */
-
-
-
-
-
 
 
 
