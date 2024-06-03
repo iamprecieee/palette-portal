@@ -95,12 +95,6 @@ a:hover {
     text-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
 }
 
-#creation {
-    margin: 0;
-    overflow: auto;
-    padding: 20px;
-}
-
 .sidebar {
     float: left;
     padding: 5px 20px 0;
@@ -109,7 +103,6 @@ a:hover {
 
 .genre, #genre {
     display: inline-block;
-    /* margin-bottom: 0; */
     transition:color 2s ease, text-shadow 1s ease, transform 1s ease;
 }
 
@@ -124,8 +117,7 @@ a:hover {
 }
 
 .sidebar ul li, .sidebar ul li a {
-    color: rgb(169, 56, 56);;
-    /* color: brown; */
+    color: rgb(169, 56, 56);
     font-size: x-small;
     font-weight: bold;
     list-style: none;
@@ -136,8 +128,6 @@ a:hover {
 
 .sidebar ul li.selected {
     background: #297cb3;
-    /* background: rgb(169, 56, 56); */
-    /* background: brown; */
     border-radius: 5px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.4);
     font-weight: bold;
@@ -201,11 +191,10 @@ a:hover {
     font-size: smaller;
     font-weight: bold;
     margin: auto 0;
-    overflow: auto;
     padding: 10px; 
     text-align: center;
     width: calc(25% - 20px);
-}
+} 
 
 img {
     border-radius: 10px;
@@ -259,6 +248,56 @@ img:hover {
     padding: 20px;
 }
 
+.select2-container--default .select2-selection--single {
+    background-color: rgb(252, 217, 157) !important;
+    border: 0 !important;
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.4);
+    font-size: small;
+    font-weight: bold;
+    transition: border 3s ease, box-shadow 1s ease, transform 1s ease;
+    transform: scale(0.7);
+}
+
+.select2-container--default .select2-selection--single:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    transform: scale(1);
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #297cb3 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    color: rgb(252, 217, 157) !important;
+}
+
+
+.select2-container--default .select2-results {
+    background-color: rgb(236, 236, 222);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.7);
+    color: #297cb3;
+}
+
+.add-button, .remove-button, .button-light {
+    background: rgba(236, 236, 222, 0);
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.4);
+    color: rgb(169, 56, 56);
+    display: inline-block;
+    font-weight: bolder;
+    padding: 5px;
+    text-transform: uppercase;
+    transition:color 2s ease, background-color 2s ease, border 3s ease, box-shadow 1s ease, transform 1s ease;
+}
+
+.add-button:hover, .remove-button:hover, .button-light:hover {
+    background: #297cb3;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
+    color: rgb(252, 217, 157);
+    transform: scale(1.1);
+}
+
 .table-table {
     border: solid #297cb3;
     border-radius: 5px;
@@ -285,10 +324,6 @@ table {
     transform: scale(1.1);
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
 }
-
-/* /* table.table-cart {
-    margin-bottom: 40px;
-} */
 
 table.table-cart img {
     width: 180px;
@@ -319,26 +354,7 @@ tbody td.num {
     text-align: center;
 } 
 
-.add-button, .remove-button, .button-light {
-    background: rgba(236, 236, 222, 0);
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.4);
-    color: rgb(169, 56, 56);
-    font-weight: bolder;
-    display: inline-block;
-    text-transform: uppercase;
-    transition:color 2s ease, background-color 2s ease, border 3s ease, box-shadow 1s ease, transform 1s ease;
-}
 
-.add-button:hover, .remove-button:hover, .button-light:hover {
-    background: #297cb3;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-    color: rgb(252, 217, 157);
-    transform: scale(1.1);
-}
 
 .button-light {
     padding: 5px;
@@ -354,34 +370,6 @@ form p label {
     padding-bottom: 5px;
 }
 
-.select2-container--default .select2-selection--single {
-    background-color: rgb(252, 217, 157) !important;
-    border: 0 !important;
-    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.4);
-    font-size: small;
-    font-weight: bold;
-    transition: border 3s ease, box-shadow 1s ease, transform 1s ease;
-    transform: scale(0.7);
-}
-
-.select2-container--default .select2-selection--single:hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-    transform: scale(1);
-}
-
-.select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #297cb3 !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
-    color: rgb(252, 217, 157) !important;
-}
-
-
-.select2-container--default .select2-results {
-    background-color: rgb(236, 236, 222);
-    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.7);
-    color: #297cb3;
-}
-
 #main.checkout {
     margin: 0;
     overflow: auto;
@@ -392,6 +380,15 @@ form p label {
     clear: both;
     float: left;
 }
+
+
+
+
+
+
+
+
+
 
 #main.checkout form p input {
     background: rgb(236, 236, 222);
@@ -442,7 +439,7 @@ form p label {
     display: inline-block;
     font-size: small;
     font-weight: bolder;
-    margin-left: 112px;
+    margin-left: 110px;
     padding: 5px;
     text-transform: uppercase;
     transition:color 2s ease, background-color 2s ease, border 3s ease, box-shadow 1s ease, transform 1s ease;
@@ -508,10 +505,6 @@ form p label {
     font-size: 18px;
     font-weight: bold;
 }
-
-/* #span-price {
-    color: rgb(231, 89, 89);
-} */
 
 .order-form {
     float: left;
@@ -611,21 +604,19 @@ form p label {
 
 
 
-
-
-
-
-
-
-
-
-
 /* Some extra customization testing */
 
 .artwork-detail #artwork-image {
     width: 350px;
     max-width: 100%; 
     height: auto; 
+}
+
+/* Media query for ipads */
+@media (max-width: 1024px) {
+    .artwork-detail #artwork-image {
+        width: 100%;
+    }
 }
 
 /* Media query for smaller screens (tablets and mobile devices) */
