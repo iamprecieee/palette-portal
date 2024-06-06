@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-j*f*@+4bl2^v*c-2%cr=$)rvvzsk1)@_vkxg)4ctf(t%ua2t*p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = [] if DEBUG=='True' else [os.getenv('ALLOWED_HOSTS', '')]
+ALLOWED_HOSTS = [] if DEBUG == 'True' else [os.getenv('ALLOWED_HOSTS', '')]
 
 
 # Application definition
@@ -49,14 +49,19 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'corsheaders',
+    # 'debug_toolbar', # I used this to monitor memcached
+    'redisboard', # Currently using this to monitor redis cache
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware', # Required for per-site caching
     'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware', # Required for per-site caching
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -64,6 +69,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# INTERNAL_IPS = [
+#     '127.0.0.1',
+# ]
 
 ROOT_URLCONF = 'portal.urls'
 
@@ -104,7 +113,7 @@ WSGI_APPLICATION = 'portal.wsgi.application'
 # }
 
 
-import dj_database_url
+import dj_database_url # Using this for render-hosted postgresql
 
 DATABASES = {
     "default": dj_database_url.config(
@@ -178,3 +187,24 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+# Cache setup. P.S: Testing different configs.
+
+CACHES = {
+    'default': {
+        # Using memcached
+        # 'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        # 'LOCATION': '127.0.0.1:11211'
+        
+        #Using redis
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': os.getenv('REDIS_URL'),
+    }
+}
+
+# I'm not using per-site cache at the moment as it affects the cart and checkout functionality.
+
+# CACHE_MIDDLEWARE_ALIAS = 'default'
+# CACHE_MIDDLEWARE_SECONDS = 60 * 5
+# CACHE_MIDDLEWARE_KEY_PREFIX = 'palette'

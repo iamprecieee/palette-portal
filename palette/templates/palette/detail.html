@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cache %}
 
 {% block title %}
     {{ artwork.name }}
@@ -8,7 +9,9 @@
 {% block content %}
     <div class="artwork-detail">
         <div>
-            <img id="artwork-image" src="{{ artwork.image.url }}" alt="{{ artwork.name }} image">
+            {% cache 300 artwork artwork.id %}
+                <img id="artwork-image" src="{{ artwork.image.url }}" alt="{{ artwork.name }} image">
+            {% endcache %}
         </div>
 
         <div>

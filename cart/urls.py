@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import cart_detail, add_item, remove_item
+from django.views.decorators.cache import cache_page
 
 
 app_name = 'cart'
