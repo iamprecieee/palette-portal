@@ -537,7 +537,7 @@ form p label {
 
 .order-success-page h1 {
     font-weight: bolder;
-    transition: color 2s ease, transform 0.5s ease;
+    transition: color 2s ease, transform 1s ease;
 }
 
 .order-success-page h1:hover {
@@ -585,7 +585,7 @@ form p label {
 
 #error-page h1 {
     font-weight: bolder;
-    transition: color 0.5s ease, transform 0.5s ease;
+    transition: color 2s ease, transform 1s ease;
 }
 
 #error-page h1:hover {
